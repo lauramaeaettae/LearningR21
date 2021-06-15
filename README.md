@@ -1,5 +1,6 @@
 
-# LearningR21: Practicing boringness by learning R 
+
+# LearningR21: Practicing coding by learning R 
 
 This project is part of the DDA R-course 
 
