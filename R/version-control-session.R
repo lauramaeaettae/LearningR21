@@ -1,4 +1,4 @@
 source(here::here("R/package_loadning.R"))
 
 
-# Testing staging and committing to Git
+# Testing staging and committing to Git --> commit this comment
