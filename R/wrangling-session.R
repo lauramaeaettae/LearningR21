@@ -80,3 +80,29 @@ rename(physical_activity, days_phys_active = phys_active_days)
 physical_activity <- nhanes_small %>%
     select(phys_active_days, phys_active) %>%
     rename(days_phys_active = phys_active_days)
+
+## Filtering
+
+# Filter for all females
+nhanes_small %>%
+    filter(sex == "female")
+
+# Filter non-female
+nhanes_small %>%
+    filter(sex != "female")
+
+# Filter BMI=25
+nhanes_small %>%
+    filter(bmi == 25)
+
+# Filter bmi > 25
+nhanes_small %>%
+    filter(bmi >= 25)
+
+# Filtering by several variables (bmi is 25 and sex is female) with AND
+nhanes_small %>%
+    filter(bmi>25 & sex == "female")
+
+# with OR
+nhanes_small %>%
+    filter(bmi > 25 | sex == "female")
