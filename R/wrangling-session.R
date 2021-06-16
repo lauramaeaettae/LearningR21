@@ -131,4 +131,27 @@ nhanes_small %>%
 
 ## Transform or add columns
 
+# Mutate height in cm to height in m
+nhanes_small %>%
+    mutate(height = height / 100) # new col = old col
 
+# Add new col with log-height
+nhanes_small %>%
+    mutate(log_height = log(height))
+
+# mutate several columns
+nhanes_small %>%
+    mutate(height = height /100,
+           log_height = log(height))
+
+# mutate with logical operators
+nhanes_small %>%
+    mutate(highly_active = if_else(phys_active_days >= 5, "yes", "no"))
+
+# Save new dataframe
+nhanes_update <- nhanes_small %>%
+    mutate(height = height / 100,
+           log_height = log(height),
+           highly_active = if_else(phys_active_days >= 5, "yes", "no"))
+
+str(nhanes_update)
