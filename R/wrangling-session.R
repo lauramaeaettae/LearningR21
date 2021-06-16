@@ -77,4 +77,6 @@ nhanes_small %>% select(bmi, contains("age"))
 physical_activity <- select(nhanes_small, phys_active_days, phys_active)
 rename(physical_activity, days_phys_active = phys_active_days)
 
-nhanes_small %>% select(phys_active_days) %>% rename(days_phys_active = phys_active_days)
+physical_activity <- nhanes_small %>%
+    select(phys_active_days, phys_active) %>%
+    rename(days_phys_active = phys_active_days)
