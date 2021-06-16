@@ -106,3 +106,29 @@ nhanes_small %>%
 # with OR
 nhanes_small %>%
     filter(bmi > 25 | sex == "female")
+
+## Arranging data
+
+# Arranging by age
+nhanes_small %>%
+    arrange(age) # ascending order by default
+
+# by sex
+nhanes_small %>%
+    arrange(sex) # alphabetical order by default
+
+# by descending order for age
+nhanes_small %>%
+    arrange(desc(age))
+
+# by several variables, first sex, then age
+nhanes_small %>%
+    arrange(sex, age)
+
+# to switch sexes but keep age ascending
+nhanes_small %>%
+    arrange(desc(sex), age)
+
+## Transform or add columns
+
+
