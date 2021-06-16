@@ -155,3 +155,18 @@ nhanes_update <- nhanes_small %>%
            highly_active = if_else(phys_active_days >= 5, "yes", "no"))
 
 str(nhanes_update)
+
+## Summary statistics by group
+
+# OBS! logikken med summarise(new col = funktion()) laver ikke nye colonner i dataen -> de er kun synlige i den tibble der produceres i consolen
+
+# Group max bmi
+nhanes_small %>% summarise(max_bmi = max(bmi))
+# doesn't work because of NA's in the dataframe
+
+nhanes_small %>% summarise(max_bmi = max(bmi, na.rm = T))
+summary(nhanes_small$bmi) # to see how many NA's there are
+
+# several summary statistics
+nhanes_small %>% summarise(max_bmi = max(bmi, na.rm = T),
+                           min_bmi = min(bmi, na.rm = T))
