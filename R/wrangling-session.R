@@ -170,3 +170,25 @@ summary(nhanes_small$bmi) # to see how many NA's there are
 # several summary statistics
 nhanes_small %>% summarise(max_bmi = max(bmi, na.rm = T),
                            min_bmi = min(bmi, na.rm = T))
+
+
+# Ex. 9.16
+
+# 1. Calculate the mean of weight and age.
+# 2. Calculate the max and min of height.
+# 3. Calculate the median of age and phys_active_days.
+
+# 1.
+nhanes_small %>%
+    summarise(mean_weight = mean(weight, na.rm = T),
+              mean_age = mean(age, na.rm = T))
+
+# 2.
+nhanes_small %>%
+    summarise(max_height = max(height, na.rm = T),
+              min_height = min(height, na.rm = T))
+
+# 3.
+nhanes_small %>%
+    summarise(median_age = median(age, na.rm = T),
+              median_phys_active_days = median(phys_active_days, na.rm = T))
