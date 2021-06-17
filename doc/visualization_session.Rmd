@@ -1,0 +1,62 @@
+---
+title: "Data visualization"
+author: "Laura Linnea Määttä"
+date: "17/6/2021"
+output: html_document
+---
+```{r setup}
+# Load packages
+source(here::here("R/package_loading.R"))
+
+# Load tidied data
+load(here::here("data/nhanes_small.rda"))
+```
+
+# One variable plots
+
+```{r continuous-variables}
+
+# OBS, normally, each plot should have its own code chunk
+
+# Density plot
+ggplot(nhanes_small, aes(x = bmi)) + 
+           geom_density()
+
+# Histogram
+ggplot(nhanes_small, aes(x = bmi)) + 
+    geom_histogram()
+
+```
+
+```{r discrete-variables}
+
+# Barplot 
+ggplot(nhanes_small, aes(x = sex)) +
+    geom_bar()
+
+ggplot(nhanes_small, aes(x = diabetes)) +
+    geom_bar()
+
+
+```
+
+
+```{r remove-missing-diabates}
+
+# Remove diabetes NA values
+nhanes_tidied <- nhanes_small %>% 
+    filter(!is.na(diabetes))
+summary(nhanes_tidied)
+
+# Save tidied data-set
+usethis::use_data(nhanes_tidied, overwrite = T) # overwrite = T overwrites the nhanes_tidied everytime the script is run 
+
+# Barplot witout the missing diabetes cases
+ggplot(nhanes_tidied, aes(x = diabetes)) +
+    geom_bar()
+
+
+```
+
+
+
