@@ -5,26 +5,55 @@ date: "16/6/2021"
 output: word_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+1. Laura Linnea Määttä  
+2. Danish Pain Research Center
+3. Department of Clinical Medicine, Aarhus University
+
+# Intro
+
+# Methods and results
+
+## Analysis
+
+This is where **data analysis** is *supposed* to be. 
+
+# Discussion
+
+
+
+
+```{r setup}
+
+source(here::here("R/package_loading.R"))
+load(here::here("data/nhanes_small.rda"))
 ```
 
-## R Markdown
+```{r prettier-table, echo=FALSE}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+nhanes_small %>%
+    filter(!is.na(diabetes)) %>% 
+    group_by(diabetes, sex) %>% 
+    summarise(mean_age = mean(age, na.rm = TRUE),
+              mean_bmi = mean(bmi, na.rm = TRUE)) %>% 
+    ungroup() %>% 
+    mutate(mean_age = round(mean_age, 1),
+           mean_bmi = round(mean_bmi, 1),
+           sex = str_to_sentence(sex)) %>% 
+    rename("Diabetes status" = diabetes,
+           "Sex" = sex, 
+           "Mean age" = mean_age,
+           "Mean BMI" = mean_bmi) %>% 
+     knitr::kable(caption = "Table caption. Mean values of Age and BMI for each sex and diabetes status.")
+   
 ```
 
-## Including Plots
+```
+```{r kitten, out.width="50%", out.height="50%", fig.cap="Kitten attacking flowers!"}
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+knitr::include_graphics(here::here("doc/images/kitten.jpg"))
+
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+![Image by Dimitri Houtteman from Pixabay.](images/kitten.jpg)

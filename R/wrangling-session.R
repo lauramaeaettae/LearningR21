@@ -211,3 +211,4 @@ nhanes_small %>% filter(!is.na(diabetes)) %>%
 # Save as a .rda in th data folder
 usethis::use_data(nhanes_small, overwrite = T)
 
+
