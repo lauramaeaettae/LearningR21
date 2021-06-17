@@ -58,5 +58,58 @@ ggplot(nhanes_tidied, aes(x = diabetes)) +
 
 ```
 
+# Two variable plots
 
+```{r two-continuous-variables}
+
+# Save the plot "base" in a object to make further plotting easier
+bmi_chol <- ggplot(nhanes_tidied, aes(x = bmi, y = tot_chol))
+
+# Scatter plot
+bmi_chol + geom_point()
+
+# Scatter plot with density 
+bmi_chol + geom_hex()
+
+# Smoothing line with confidence interval 
+bmi_chol + geom_smooth()
+
+
+# Combining layers of geoms 
+bmi_chol + geom_hex() + geom_smooth()
+```
+
+```{r two-discrete-variables}
+
+# Saving a plot base
+two_discrete <- nhanes_tidied %>% 
+    ggplot(aes(x = diabetes, fill = sex))
+
+# Bar plot
+two_discrete + geom_bar()
+
+# Bar plot side by side
+two_discrete + geom_bar(position = position_dodge())
+
+
+```
+
+# Discrete and continuous variables in same plot
+
+```{r discrete-continuous-variables}
+
+two_mixed <- nhanes_tidied %>% 
+    ggplot(aes(x = diabetes, y = bmi))
+
+# Boxplot
+two_mixed + geom_boxplot()
+
+# Jitter plot to se the individial data points
+two_mixed + geom_jitter()
+
+# Violin plot
+two_mixed + geom_violin()
+
+
+```
 
