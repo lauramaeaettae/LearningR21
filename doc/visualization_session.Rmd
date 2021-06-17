@@ -113,3 +113,43 @@ two_mixed + geom_violin()
 
 ```
 
+# Exercise to make plots with one or two variables
+
+```{r exercise}
+
+# 1a. Distribution of age
+ggplot(nhanes_tidied, aes(x = age)) +
+    geom_histogram()
+    
+# 1b. Distribution of age of diabetes diagnosis
+ggplot(nhanes_tidied, aes(x = diabetes_age)) +
+    geom_histogram()
+
+# 2a. Number of people who smoke now
+ggplot(nhanes_tidied, aes(x = smoke_now)) +
+    geom_bar()
+
+# 2b. Number of people who are physically active
+ggplot(nhanes_tidied, aes(x = phys_active)) +
+    geom_bar()
+
+# 3a. BMI in relation to systolic blood pressure
+ggplot(nhanes_tidied, aes(x = bmi, y = bp_sys_ave)) +
+    geom_hex()
+
+# 3b. BMI relation to diastolic blood pressure
+ggplot(nhanes_tidied, aes(x = bmi, y = bp_dia_ave)) +
+    geom_hex()
+    
+# 4. Physically active people with or without diabetes
+ggplot(nhanes_tidied, aes(x = diabetes, fill = phys_active)) +
+    geom_bar(position = position_dodge())
+
+# 5. Poverty levels between those with or without diabetes. Smaller numbers means higher poverty.
+ggplot(nhanes_tidied, aes(x = diabetes, y = poverty)) +
+    geom_violin()
+
+```
+
+
+
